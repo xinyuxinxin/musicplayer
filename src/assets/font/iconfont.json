@@ -1,0 +1,93 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "660498",
+      "name": "随机",
+      "font_class": "suiji",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "1896728",
+      "name": "循环",
+      "font_class": "xunhuan",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "5619016",
+      "name": "网易云音乐",
+      "font_class": "wangyiyunyinle",
+      "unicode": "e501",
+      "unicode_decimal": 58625
+    },
+    {
+      "icon_id": "8829641",
+      "name": "上一首",
+      "font_class": "Asong",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "8829643",
+      "name": "下一首",
+      "font_class": "Nextsong",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "9614265",
+      "name": "歌单",
+      "font_class": "gedan",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "11260242",
+      "name": "音量",
+      "font_class": "yinliang",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "11937549",
+      "name": "静音",
+      "font_class": "jingyin",
+      "unicode": "e878",
+      "unicode_decimal": 59512
+    },
+    {
+      "icon_id": "13927677",
+      "name": "播放 2",
+      "font_class": "bofang",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "14126707",
+      "name": "歌词_24",
+      "font_class": "geci24",
+      "unicode": "e504",
+      "unicode_decimal": 58628
+    },
+    {
+      "icon_id": "16209850",
+      "name": "暂停 停止",
+      "font_class": "zantingtingzhi",
+      "unicode": "e508",
+      "unicode_decimal": 58632
+    },
+    {
+      "icon_id": "16671358",
+      "name": "顺序",
+      "font_class": "shunxu",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    }
+  ]
+}
