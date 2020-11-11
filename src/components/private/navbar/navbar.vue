@@ -18,10 +18,15 @@
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
     </div>
-    <div class="login">
-      <a  v-if="false" href="#" @click="openLogin">登录</a>
-      <div v-else style="color: white">
-        <el-image class="head-img" src="https://p1.music.126.net/1dmWuCx3WyHdSjZlRs9Hvg==/109951163593120246.jpg?param=30y30"></el-image>
+    <div class="login" >
+      <a  v-if="!this.$store.state.isLogin" href="#" @click="openLogin">登录</a>
+      <div v-else style="color: white" @click="showUserOption">
+        <el-image class="head-img" :src="this.$store.state.avatarUrl"></el-image>
+        <ul v-if="isShowUserOption" class="user_option">
+          <li>我的信息</li>
+          <li>详细信息</li>
+          <li>注销登录</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -32,7 +37,8 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      searchContent: ''
+      searchContent: '',
+      isShowUserOption: false
     }
   },
   methods: {
@@ -48,7 +54,10 @@ export default {
       }
     },
     openLogin () {
-      this.$store.commit('setIsNeedLogin')
+      this.$store.commit('setIsNeedLogin', true)
+    },
+    showUserOption () {
+      this.isShowUserOption = !this.isShowUserOption
     }
   }
 }
@@ -59,7 +68,6 @@ export default {
   background-color: #242424;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .navbar h1 {
@@ -91,6 +99,38 @@ h1 i {
 
 .login {
   flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.user_option:before{
+  content: '';
+  width: 0px;
+  height: 0px;
+  padding: 0px;
+  display: block;
+  margin: -16px auto 0px;
+  border: 8px solid transparent;
+  border-bottom-color: white;
+}
+.user_option{
+  position: absolute;
+  width: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: black;
+  list-style: none;
+  border-radius: 10px;
+  z-index: 999;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+.user_option li{
+  margin: 10px auto;
+  font-size: 13px;
+  height: 25px;
+  line-height: 25px;
   text-align: center;
 }
 

@@ -17,7 +17,7 @@
         <el-input v-model="password" placeholder="密码" prefix-icon="el-icon-lock" show-password></el-input>
       </div>
       <div class="sub-box">
-        <button class="sub-booton">登录</button>
+        <button class="sub-booton" @click="toLogin">登录</button>
       </div>
       <div class="img-box">
         <el-image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3614224898,382736402&fm=26&gp=0.jpg" ></el-image>
@@ -37,7 +37,20 @@ export default {
   },
   methods: {
     closeLogin () {
-      this.$store.commit('setIsNeedLogin')
+      this.$store.commit('setIsNeedLogin', false)
+    },
+    async toLogin () {
+      try {
+        const res = await this.$api.login(this.username, this.password)
+        if (res.code === 200) {
+          console.log(res)
+          this.$storage.set('userdata', res)
+          this.$store.commit('setIsNeedLogin', false)
+        }
+      } catch (e) {
+        this.$message.error('登录失败，账号或密码错误')
+        console.log(e)
+      }
     }
   }
 }

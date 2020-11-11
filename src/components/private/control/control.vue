@@ -131,10 +131,8 @@ export default {
   watch: {
     'playmusic.song_url': {
       handler: function () {
-        console.log(4)
         clearInterval(this.timer)
         this.currentTime = 0
-        console.log(5)
         this.timer = setInterval(this.countMin, 1000)
         document.getElementById('music').autoplay = 'autoplay'
         this.isPlay = true

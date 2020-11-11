@@ -1,11 +1,11 @@
-import api from './instance'
+import axios from './server'
 
 /**
  * @method 手机登录
  * @params phone 用户id
  */
 export const login = (phone, password) =>
-  api.get(`/login/cellphone?phone=${phone}&password=${password}`, {
+  axios.get(`/login/cellphone?phone=${phone}&password=${password}`, {
     withCredentials: true
   })
 
@@ -13,7 +13,7 @@ export const login = (phone, password) =>
  * @method 获取用户详情
  * @params uid 用户id
  */
-export const getUserDetail = uid => api.get(`/user/detail?uid=${uid}`, {})
+export const getUserDetail = uid => axios.get(`/user/detail?uid=${uid}`, {})
 
 /**
  * @method 获取用户播放记录
@@ -22,11 +22,11 @@ export const getUserDetail = uid => api.get(`/user/detail?uid=${uid}`, {})
  */
 
 export const getUserRecord = (uid, type) =>
-  api.get(`/user/record?uid=${uid}&type=${type}`, {})
+  axios.get(`/user/record?uid=${uid}&type=${type}`, {})
 
 /**
  * @method 获取用户歌单
  * @params uid 用户 id
  */
 
-export const getUserArtist = uid => api.get(`/user/playlist?uid=${uid}`, {})
+export const getUserArtist = uid => axios.get(`/user/playlist?uid=${uid}`, {})

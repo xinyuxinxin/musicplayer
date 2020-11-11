@@ -1,8 +1,8 @@
-export const login = (name, pwd) => {
+export const set = (name, mes) => {
   if (name !== '') {
-    if (pwd) {
+    if (mes) {
       var lsobj = window.localStorage
-      var datajson = JSON.stringify(pwd)
+      var datajson = JSON.stringify(mes)
       lsobj.setItem(name, datajson)
     }
   } else {
@@ -10,7 +10,7 @@ export const login = (name, pwd) => {
   }
 }
 
-export const getPerson = (name) => {
+export const get = (name) => {
   if (name !== '') {
     var lsdata = window.localStorage
     try {
@@ -25,7 +25,7 @@ export const getPerson = (name) => {
   }
 }
 
-export const logout = (name) => {
+export const remove = (name) => {
   if (name === '') {
     console.log('存在空数据')
     return false

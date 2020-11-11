@@ -7,7 +7,15 @@ export default new Vuex.Store({
   state: {
     playStatus: false,
     playMusicId: 1426087898,
-    isNeedLogin: false
+    isNeedLogin: false,
+    isLogin: false,
+    token: '',
+    account: Object,
+    cookie: '',
+    profile: Object,
+    bindings: [],
+    avatarUrl: '',
+    userId: ''
   },
   getters: {
     getPlayStatus (state) {
@@ -21,8 +29,15 @@ export default new Vuex.Store({
     setPlayMusic (state, id) {
       state.playMusicId = id
     },
-    setIsNeedLogin (state) {
-      state.isNeedLogin = !state.isNeedLogin
+    setIsNeedLogin (state, flag) {
+      state.isNeedLogin = flag
+    },
+    setIsLogin (state, flag) {
+      state.isLogin = flag
+    },
+    setUserMessage (state, mes) {
+      state.avatarUrl = mes.profile.avatarUrl
+      state.userId = mes.account.id
     }
   },
   actions: {

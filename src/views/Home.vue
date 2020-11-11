@@ -29,6 +29,17 @@ export default {
   },
   watch: {
   },
+  created () {
+    if (this.$storage.get('userdata') === null) {
+      this.$message.error('用户登录失效')
+      this.$store.commit('setIsNeedLogin', true)
+    } else {
+      console.log(this.$storage.get('userdata'))
+      const userdata = this.$storage.get('userdata')
+      this.$store.commit('setIsLogin', true)
+      this.$store.commit('setUserMessage', userdata)
+    }
+  },
   mounted () {
   },
   methods: {

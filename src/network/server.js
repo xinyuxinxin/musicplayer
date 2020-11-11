@@ -44,6 +44,9 @@ instance.interceptors.response.use(response => {
     router.replace({
       path: 'login'
     })
+  } else if (status === 502) {
+    alert('密码错误')
+    return Promise.resolve(data)
   } else {
     return Promise.reject(response)
   }
