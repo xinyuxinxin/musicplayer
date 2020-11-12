@@ -35,15 +35,20 @@
     <transition name="slide-fade">
       <div class="user-song-list-box" v-if="isShowUserSongList">
         <ul>
-          <li>23131</li>
+          <li>我是歌单</li>
         </ul>
       </div>
     </transition>
     <transition name="slide-fade">
       <div class="song-lyric" v-if="isShowLyric">
-        <ul>
-          <li>23131</li>
-        </ul>
+        <div class="hidden-scoll">
+          <ul>
+            <template v-for="(item, index) in musicLyric">
+              <li class="lyric-top" :class="{'lyric-active': curLyric === index}" v-if="item.words !== ''" :key="index">{{item.words}}</li>
+              <li v-if="item.words !== ''" :class="{'lyric-active': curLyric === index}" :key="index + 'r'">{{item.twords}}</li>
+            </template>
+          </ul>
+        </div>
       </div>
     </transition>
     <audio id="music" @pause="musicPlayIconPasue" @ended="musicPause" @playing="musicPlayIconPlay" :src="musicUrl.url"></audio>
@@ -63,10 +68,11 @@ export default {
       currtime: 0,
       curvolum: 100,
       timer: '',
-      musicLyric: {},
+      musicLyric: [],
       playIcon: false,
       isShowUserSongList: false,
-      isShowLyric: false
+      isShowLyric: false,
+      curLyric: 0
     }
   },
   watch: {
@@ -151,22 +157,29 @@ export default {
     getLyricArray (lyric, tlyric) {
       var array = lyric.split('\n')
       var tarray = tlyric.split('\n')
-      console.log(array)
-      console.log(tarray)
       // 遍历分割每一句
+      var count = 0
       for (let index = 0; index < array.length; index++) {
-        array[index] = getLrcObj(array[index])
-      }
-      for (let index = 0; index < tarray.length; index++) {
-        if (tarray[index] !== '') {
-          console.log(tarray[index])
-          tarray[index] = getLrcObj(tarray[index])
+        if (array[index] !== '') {
+          array[count++] = getLrcObj(array[index])
         }
       }
-      return {
-        first: array,
-        second: tarray
+      array.splice(count)
+      count = 0
+      for (let index = 0; index < tarray.length; index++) {
+        if (tarray[index] !== '') {
+          tarray[count++] = getLrcObj(tarray[index])
+        }
       }
+      tarray.splice(count)
+      count = 0
+      for (let i = 0; i < array.length; i++) {
+        if (count < tarray.length && array[i].seconds === tarray[count].seconds) {
+          array[i].twords = tarray[count].words
+          count++
+        }
+      }
+      return array
       function getLrcObj (content) {
         var twoParts = content.split(']')
         var time = twoParts[0].substr(1)
@@ -313,7 +326,7 @@ export default {
 }
 .user-song-list-box{
   width: 350px;
-  height: 500px;
+  height: 400px;
   background-color: white;
   position: absolute;
   right: 0;
@@ -323,13 +336,38 @@ export default {
 }
 .song-lyric{
   width: 350px;
-  height: 400px;
+  height: 490px;
   background-color: white;
   position: absolute;
   right: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   bottom: 80px;
   padding: 15px;
+  box-sizing: border-box;
+}
+.song-lyric ul{
+  height: 440px;
+  width: 350px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.song-lyric ul li{
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  font-size: 14px;
+}
+.lyric-top {
+  margin-top: 10px;
+}
+.lyric-top:first-child .lyric-top:last-child{
+  margin-top: 0;
+}
+.hidden-scoll{
+  width: 320px;
+}
+.lyric-active {
+  background-color: skyblue;
+  opacity: 0.5;
 }
 .slide-fade-enter-active {
   transition: all .8s ease;
