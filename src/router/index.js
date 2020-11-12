@@ -12,7 +12,8 @@ const routes = [
     children: [
       { path: '', name: 'index', component: () => import('../views/index') },
       { path: 'mymusic', name: 'mymusic', component: () => import('../views/mymusic') },
-      { path: 'search', name: 'searchlist', component: () => import('../views/searchlist/index') }
+      { path: 'search', name: 'searchlist', component: () => import('../views/searchlist/index') },
+      { path: 'person', name: 'personindex', component: () => import('../views/person/personIndex') }
     ]
   },
   {

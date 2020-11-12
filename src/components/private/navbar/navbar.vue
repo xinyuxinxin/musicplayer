@@ -23,7 +23,7 @@
       <div v-else style="color: white" @click="showUserOption">
         <el-image class="head-img" :src="this.$store.state.avatarUrl"></el-image>
         <ul v-if="isShowUserOption" class="user_option">
-          <li>我的信息</li>
+          <router-link tag="li" :to="'/person'">我的信息</router-link>
           <li>详细信息</li>
           <li>注销登录</li>
         </ul>
