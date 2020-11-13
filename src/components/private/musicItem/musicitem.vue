@@ -8,10 +8,10 @@
       1
     </div>
     <div class="song-ar">
-      {{song.artists[0].name}}
+      {{getArtists}}
     </div>
     <div class="song-alb">
-      《{{song.album.name}}》
+      《{{al.name}}》
     </div>
     <div class="song-time">
       {{getTime}}
@@ -25,11 +25,29 @@ export default {
   props: {
     song: {
       type: Object
+    },
+    ar: {
+      type: Array
+    },
+    al: {
+      type: Object
+    },
+    dt: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
     getTime () {
-      return this.$until.toTime(this.song.duration, 1000)
+      return this.$until.toTime(this.dt, 1000)
+    },
+    getArtists () {
+      var name = ''
+      for (let i = 0; i < this.ar.length - 1; i++) {
+        name += this.ar[i].name + '/'
+      }
+      name += this.ar[this.ar.length - 1].name
+      return name
     }
   },
   methods: {
@@ -69,7 +87,7 @@ export default {
   flex: 2;
   text-align: center;
 }
-.song-alb{
+.song-alb,.song-ar{
   text-overflow: ellipsis;
   overflow:hidden;
   white-space: nowrap;

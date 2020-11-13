@@ -29,6 +29,12 @@ export default {
       }
     }
   },
+  props: {
+    limit: {
+      type: Number,
+      default: 12
+    }
+  },
   created () {
     this.getsheet()
   }
