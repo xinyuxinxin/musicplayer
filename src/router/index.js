@@ -13,7 +13,9 @@ const routes = [
       { path: '', name: 'index', component: () => import('../views/index') },
       { path: 'mymusic', name: 'mymusic', component: () => import('../views/mymusic') },
       { path: 'search', name: 'searchlist', component: () => import('../views/searchlist/index') },
-      { path: 'person', name: 'personindex', component: () => import('../views/person/personIndex') }
+      { path: 'person', name: 'personindex', component: () => import('../views/person/personIndex') },
+      { path: 'songDetail', name: 'songDetail', component: () => import('../views/song/songDetail') },
+      { path: 'sheetDetail', name: 'sheetDetail', component: () => import('../views/song/sheetDetail') }
     ]
   },
   {

@@ -4,7 +4,7 @@
     <el-image :src="this.sheet.picUrl"></el-image>
   </div>
   <div>
-    <h3 class="sheetitem-title">{{this.sheet.name}}</h3>
+    <router-link :to="{name:'sheetDetail', query:{id:sheet.id}}" class="sheetitem-title" tag="h3">{{this.sheet.name}}</router-link>
   </div>
 </div>
 </template>

@@ -4,7 +4,7 @@
       <el-image :src="song.picUrl"></el-image>
     </div>
     <div class="songMessage">
-      <h2>{{song.name}}</h2>
+      <router-link :to="{name:'songDetail', query: {id:song.id}}" tag="h2">{{song.name}}</router-link>
       <p>{{song.song.artists[0].name}}</p>
     </div>
     <div class="songTime">
