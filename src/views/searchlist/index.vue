@@ -5,7 +5,7 @@
       <el-menu-item index="2">歌手</el-menu-item>
     </el-menu>
     <div>
-      <musicitem class="song" v-for="(item, index) in musicList" :song="item" :key="index"></musicitem>
+      <musicitem class="song" v-for="(item, index) in musicList" :ar="item.artists" :al="item.album" :dt="item.duration" :song="item" :key="index"></musicitem>
     </div>
     <div class="pagination-box" >
       <el-pagination
@@ -40,6 +40,7 @@ export default {
     async getMusicList () {
       const res = await this.$api.search(this.$route.query.keyword, this.limit, this.offset, this.type)
       if (res.code === 200) {
+        // console.log(res)
         this.musicList = res.result.songs
         this.songNum = res.result.songCount
       }

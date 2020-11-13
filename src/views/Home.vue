@@ -54,6 +54,8 @@ export default {
       } else {
         this.isFixed = false
       }
+    },
+    initCityCode () {
     }
   }
 }
