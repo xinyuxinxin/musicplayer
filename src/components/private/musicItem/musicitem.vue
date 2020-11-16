@@ -1,8 +1,11 @@
 <template>
   <div class="item-box">
-    <div class="song-name">
+    <div class="song-name" v-if="song">
       <i class="iconfont icon-bofang" @click="playMusic"></i>
       <h3>{{song.name}}</h3>
+    </div>
+    <div class="song-name" v-else>
+      歌曲
     </div>
     <div class="song-fun">
       1
@@ -10,8 +13,11 @@
     <div class="song-ar">
       {{getArtists}}
     </div>
-    <div class="song-alb">
+    <div class="song-alb" v-if="al">
       《{{al.name}}》
+    </div>
+    <div class="song-alb" v-else>
+      专辑
     </div>
     <div class="song-time">
       {{getTime}}
@@ -39,9 +45,16 @@ export default {
   },
   computed: {
     getTime () {
-      return this.$until.toTime(this.dt, 1000)
+      if (this.dt === 0) {
+        return '时间'
+      } else {
+        return this.$until.toTime(this.dt, 1000)
+      }
     },
     getArtists () {
+      if (!this.ar) {
+        return '歌手'
+      }
       var name = ''
       for (let i = 0; i < this.ar.length - 1; i++) {
         name += this.ar[i].name + '/'
