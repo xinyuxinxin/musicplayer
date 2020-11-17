@@ -100,7 +100,7 @@ export default {
   flex: 2;
   text-align: center;
 }
-.song-alb,.song-ar{
+.song-alb,.song-ar ,.song-name h3{
   text-overflow: ellipsis;
   overflow:hidden;
   white-space: nowrap;
