@@ -16,10 +16,12 @@ export default {
     }
   },
   components: { sheetItem },
+  computed: {
+  },
   methods: {
     async getsheet () {
       try {
-        this.sheet = await this.$api.getPersonalized('12')
+        this.sheet = await this.$api.getPersonalized('16')
         if (this.sheet.code === 200) {
           this.sheet = this.sheet.result
           console.log(this.sheet)
@@ -46,15 +48,10 @@ export default {
   float: left;
   margin-top: 10px;
   margin-bottom: 20px;
-  margin-right: calc((100% - 900px)/5);
+  margin-right: calc((100% - 1040px)/7);
   /*flex: 1;*/
 }
-.sheetitem:nth-child(6n+0){
+.sheetitem:nth-child(8n+0){
   margin-right: 0;
 }
-/*#sheets{*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*}*/
 </style>

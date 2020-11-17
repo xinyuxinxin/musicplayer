@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="logo">
-      <h1><i class="iconfont icon-wangyiyunyinle"></i>网易云音乐</h1>
+      <router-link tag="h1" to="/"><i class="iconfont icon-wangyiyunyinle"></i>网易云音乐</router-link>
     </div>
     <el-menu :default-active="activeIndex" active-text-color="#ffffff" background-color="#242424" text-color="#d2d2d2"
              class="nav" mode="horizontal" @select="handleSelect">
