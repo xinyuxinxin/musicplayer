@@ -25,7 +25,7 @@
         <ul v-if="isShowUserOption" class="user_option">
           <router-link tag="li" :to="'/person'">我的信息</router-link>
           <li>详细信息</li>
-          <li>注销登录</li>
+          <li @click="logout">注销登录</li>
         </ul>
       </div>
     </div>
@@ -58,6 +58,18 @@ export default {
     },
     showUserOption () {
       this.isShowUserOption = !this.isShowUserOption
+    },
+    logout () {
+      try {
+        const res = this.$api.logout()
+        console.log(res)
+        if (res.code === 200) {
+          console.log(1321313)
+        }
+      } catch (e) {
+        console.log(123)
+        console.log(e)
+      }
     }
   }
 }

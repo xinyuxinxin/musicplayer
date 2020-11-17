@@ -30,3 +30,8 @@ export const getUserRecord = (uid, type) =>
  */
 
 export const getUserArtist = uid => axios.get(`/user/playlist?uid=${uid}`, {})
+
+/**
+ *退出登录
+ */
+export const logout = () => axios.get('/logout')

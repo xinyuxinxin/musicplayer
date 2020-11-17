@@ -17,7 +17,7 @@
         <el-input v-model="password" placeholder="密码" prefix-icon="el-icon-lock" show-password></el-input>
       </div>
       <div class="sub-box">
-        <button class="sub-booton" @click="toLogin">登录</button>
+        <button class="sub-botton" @click="toLogin">登录</button>
       </div>
       <div class="img-box">
         <el-image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3614224898,382736402&fm=26&gp=0.jpg" ></el-image>
@@ -102,7 +102,7 @@ export default {
   width: 80%;
   margin: 20px auto 0;
 }
-.sub-booton{
+.sub-botton{
   width: 100%;
   height: 40px;
   background-color: #5dd5c8;
@@ -110,7 +110,7 @@ export default {
   outline: none;
   border: none;
 }
-.sub-booton::after{
+.sub-botton::after{
   border: none;
 }
 .el-icon-close{
