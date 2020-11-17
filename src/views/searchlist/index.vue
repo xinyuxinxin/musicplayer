@@ -5,6 +5,7 @@
       <el-menu-item index="2">歌手</el-menu-item>
     </el-menu>
     <div>
+      <musicitem></musicitem>
       <musicitem class="song" v-for="(item, index) in musicList" :ar="item.artists" :al="item.album" :dt="item.duration" :song="item" :key="index"></musicitem>
     </div>
     <div class="pagination-box" >
