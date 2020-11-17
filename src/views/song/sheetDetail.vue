@@ -1,5 +1,5 @@
 <template>
-  <div class="clearfix">
+  <div class="clearfix mian-box">
     <div class="box clearfix" v-if="sheetData">
       <div class="left">
         <div class="head clearfix">
@@ -30,8 +30,26 @@
         <div v-else>
           加载中
         </div>
+        <div class="playlist-comment-box clearfix">
+          <div class="comment-title">
+            <h3>精彩评论</h3>
+          </div>
+          <div class="clearfix">
+            <div class="comment-box" v-for="item in hotComments" :key="item.commentId">
+              <div class="comment-user clearfix">
+                <el-image class="comment-user-img" :src="item.user.avatarUrl"></el-image>
+                <div class="comment-user-message">
+                  <div class="comment-user-message-nickname">
+                    {{item.user.nickname}}
+                  </div>
+                </div>
+              </div>
+              <div class="comment-content">{{item.content}}</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="right">
+      <div class="right clearfix">
         <div class="like-songlist clearfix">
           <div style="padding: 8px" class="clearfix">
             <el-image class="likeUser" v-for="item in likeUser" :key="item.id" :src="item.avatarUrl"></el-image>
@@ -44,18 +62,17 @@
               喜欢这个歌单的人
             </p>
           </div>
-          <div class="playlist-comment-box">
-            <div class="comment-title">
-              <h3>精彩评论</h3>
+        </div>
+        <div class="simi-playlist-box clearfix">
+          <div v-for="item in this.simiList" :key="item.id" class="simi-playlist clearfix">
+            <el-image :src="item.coverImgUrl" class="simi-playlist-img"></el-image>
+            <div class="simi-playlist-message">
+              <h4>{{item.name}}</h4>
+              <p>by: {{item.creator.nickname}}</p>
             </div>
-            <div>
-              <div class="comment-box">
-                <div class="comment-user">
-                  <el-image></el-image>
-                </div>
-                <div class="comment-content">3131</div>
-              </div>
-            </div>
+          </div>
+          <div class="simi-playlist-option-box">
+           <h3> 喜欢这歌单的人也喜欢</h3>
           </div>
         </div>
       </div>
@@ -77,7 +94,8 @@ export default {
       offset: 0,
       comments: [],
       hotComments: [],
-      likeUser: []
+      likeUser: [],
+      simiList: []
     }
   },
   computed: {
@@ -91,6 +109,7 @@ export default {
     })
     this.getSongLike()
     this.getSongComments()
+    this.getSimiList()
   },
   methods: {
     async getSongSheet () {
@@ -144,6 +163,16 @@ export default {
         console.log(e)
       }
     },
+    async getSimiList () {
+      try {
+        const res = await this.$api.getRelatedPlaylist(this.$route.query.id)
+        if (res.code === 200) {
+          this.simiList = res.playlists
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    },
     formatDateTime (inputTime) {
       var date = new Date(inputTime)
       var y = date.getFullYear()
@@ -164,9 +193,13 @@ export default {
 </script>
 
 <style scoped>
+.mian-box{
+  height: auto;
+}
 .box {
   width: 70%;
   margin: 0 auto;
+  height: auto;
 }
 
 .left {
@@ -282,11 +315,9 @@ export default {
 }
 .playlist-comment-box{
   margin-top: 30px;
-  width: 100%;
   padding: 10px;
   height: auto;
   min-height: 60px;
-  background-color: #5dd5c8;
 }
 .comment-title{
   position: relative;
@@ -299,7 +330,7 @@ export default {
   position: absolute;
   height: 2px;
   width: 50px;
-  background-color: white;
+  background-color: forestgreen;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -307,11 +338,79 @@ export default {
 .comment-box{
   width: 100%;
   height: auto;
+  box-sizing: border-box;
 }
 .comment-user{
-  width: 100%;
   height: 40px;
+  margin-top: 10px;
   position: relative;
   line-height: 40px;
+}
+.comment-user-img{
+  float: left;
+  width: 40px;
+}
+.comment-user-message{
+  float: left;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.comment-content{
+  width: 100%;
+  height: auto;
+  background-color: #f7f7f7;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.simi-playlist-box{
+  background-color: skyblue;
+  padding: 15px;
+}
+.simi-playlist{
+  margin-top: 10px;
+}
+.simi-playlist-img{
+  width: 80px;
+  height: 80px;
+  float: left;
+}
+.simi-playlist-message{
+  float: left;
+  height: 80px;
+  width: calc(90% - 80px);
+  margin-left: 10px;
+  position: relative;
+}
+.simi-playlist-message p{
+  font-size: 12px;
+  position: absolute;
+  bottom: 5px;
+}
+.simi-playlist-message h4{
+  font-size: 14px;
+  font-weight: 500;
+}
+.simi-playlist-option-box{
+  position: relative;
+}
+.simi-playlist-option-box h3{
+  font-size: 15px;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 15px;
+}
+.simi-playlist-option-box:before{
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  top: 0;
 }
 </style>
