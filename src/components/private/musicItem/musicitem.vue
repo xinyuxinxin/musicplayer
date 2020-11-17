@@ -4,7 +4,7 @@
       <i class="iconfont icon-bofang" @click="playMusic"></i>
       <h3>{{song.name}}</h3>
     </div>
-    <div class="song-name" v-else>
+    <div class="song-name" style="text-indent: 4em" v-else>
       歌曲
     </div>
     <div class="song-fun">
