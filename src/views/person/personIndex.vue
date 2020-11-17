@@ -23,6 +23,7 @@
         <el-col :span="16">
           <div class="history-songs">播放历史</div>
           <ul v-if="historySongs !== '' ">
+            <musicitem></musicitem>
             <musicitem v-for="(item, index) in historySongs" :key="index" :al="item.song.al" :dt="item.song.dt" :ar="item.song.ar" :song="item.song"></musicitem>
           </ul>
           <div v-else>暂时没有记录</div>
