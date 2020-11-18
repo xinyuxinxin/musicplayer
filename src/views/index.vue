@@ -11,7 +11,7 @@
         <i class="el-icon-arrow-right"></i>
       </template>
     </smalltitle>
-    <musicsheet></musicsheet>
+    <musicsheet :sheet="this.musicsheet"></musicsheet>
   </div>
   <div style="width: 90%;margin: 0 auto;position: relative;vertical-align: top" class="clearfix">
     <div class="clearfix">
@@ -53,12 +53,26 @@ export default {
   name: 'index',
   data () {
     return {
-      searchKey: ''
+      searchKey: '',
+      musicsheet: []
     }
   },
   created () {
+    this.getsheet()
   },
   methods: {
+    async getsheet () {
+      try {
+        this.musicsheet = await this.$api.getPersonalized('16')
+        if (this.musicsheet.code === 200) {
+          this.musicsheet = this.musicsheet.result
+          console.log(123)
+          console.log(this.musicsheet)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
   },
   components: { Singer, Newsong, Musicsheet, smalltitle, rotation }
 }

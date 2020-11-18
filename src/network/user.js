@@ -35,3 +35,24 @@ export const getUserArtist = uid => axios.get(`/user/playlist?uid=${uid}`, {})
  *退出登录
  */
 export const logout = () => axios.get('/logout')
+
+/**
+ * @method 获取云盘数据
+ * @limit 返回数量
+ * @offset 偏移量（分页）
+ */
+export const getcloud = params => axios.get('/user/cloud', { params })
+
+/**
+ * @method 获取云盘数据详情
+ * @id 歌曲ID
+ */
+
+export const getCloudDetail = id => axios.get(`/user/cloud/detail?id=${id}`, {})
+
+/**
+ * @method 删除云盘数据
+ * @id 歌曲ID
+ */
+
+export const delCloud = id => axios.get(`/user/cloud/del?id=${id}`, {})

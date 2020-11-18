@@ -11,20 +11,13 @@ const routes = [
     default: index,
     children: [
       { path: '', name: 'index', component: () => import('../views/index') },
-      { path: 'mymusic', name: 'mymusic', component: () => import('../views/mymusic') },
       { path: 'search', name: 'searchlist', component: () => import('../views/searchlist/index') },
       { path: 'person', name: 'personindex', component: () => import('../views/person/personIndex') },
       { path: 'songDetail', name: 'songDetail', component: () => import('../views/song/songDetail') },
-      { path: 'sheetDetail', name: 'sheetDetail', component: () => import('../views/song/sheetDetail') }
+      { path: 'sheetDetail', name: 'sheetDetail', component: () => import('../views/song/sheetDetail') },
+      { path: 'rank', name: 'rank', component: () => import('../views/rank/rank') },
+      { path: 'cloud', name: 'cloud', component: () => import('../views/cloud/index') }
     ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 
