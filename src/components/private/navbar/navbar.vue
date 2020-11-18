@@ -5,8 +5,11 @@
     </div>
     <el-menu :default-active="activeIndex" active-text-color="#ffffff" background-color="#242424" text-color="#d2d2d2"
              class="nav" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">发现音乐</el-menu-item>
-      <el-menu-item index="2">我的音乐</el-menu-item>
+      <el-menu-item index="1"><router-link to="/" tag="p">发现音乐</router-link></el-menu-item>
+      <el-menu-item index="2"><router-link to="/rank" tag="p">排行榜</router-link></el-menu-item>
+      <el-menu-item index="3"><router-link to="/" tag="p">歌单</router-link></el-menu-item>
+      <el-menu-item index="4"><router-link to="/" tag="p">歌手</router-link></el-menu-item>
+      <el-menu-item index="5"><router-link to="/" tag="p">MV</router-link></el-menu-item>
     </el-menu>
     <div class="searchbox">
       <el-input
@@ -24,7 +27,7 @@
         <el-image class="head-img" :src="this.$store.state.avatarUrl"></el-image>
         <ul v-if="isShowUserOption" class="user_option">
           <router-link tag="li" :to="'/person'">我的信息</router-link>
-          <li>详细信息</li>
+          <router-link tag="li" :to="'/cloud'">我的云盘</router-link>
           <li @click="logout">注销登录</li>
         </ul>
       </div>
@@ -59,15 +62,14 @@ export default {
     showUserOption () {
       this.isShowUserOption = !this.isShowUserOption
     },
-    logout () {
+    async logout () {
       try {
-        const res = this.$api.logout()
-        console.log(res)
+        const res = await this.$api.logout()
         if (res.code === 200) {
-          console.log(1321313)
+          window.localStorage.clear()
+          this.$store.commit('setIsLogin', false)
         }
       } catch (e) {
-        console.log(123)
         console.log(e)
       }
     }
@@ -153,5 +155,8 @@ h1 i {
 .head-img{
   width: 40px;
   border-radius: 50%;
+}
+p{
+  font-size: 14px;
 }
 </style>
