@@ -10,3 +10,16 @@ export const toTime = (t, mul) => {
   }
   return min + ':' + s
 }
+
+// 计算次数
+export const playCount = (playCount) => {
+  if (playCount > 100000000) {
+    return Math.floor(playCount / 100000000) + '亿'
+  } else if (playCount > 10000) {
+    return Math.floor(playCount / 10000) + '万'
+  } else if (this.sheet.playCount > 1000) {
+    return Math.floor(playCount / 1000) + '千'
+  } else {
+    return playCount
+  }
+}

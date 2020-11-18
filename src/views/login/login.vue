@@ -47,6 +47,7 @@ export default {
           this.$storage.set('userdata', res)
           this.$store.commit('setIsNeedLogin', false)
           this.$store.commit('setIsLogin', true)
+          this.$store.commit('setUserMessage', res)
         }
       } catch (e) {
         this.$message.error('登录失败，账号或密码错误')

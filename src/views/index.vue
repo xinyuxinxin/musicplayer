@@ -14,7 +14,7 @@
     <musicsheet></musicsheet>
   </div>
   <div style="width: 90%;margin: 0 auto;position: relative;vertical-align: top" class="clearfix">
-    <div style="width: 50%;display: inline-block;" class="clearfix">
+    <div class="clearfix">
       <smalltitle>
         <template v-slot:head>
           <h3><i class="el-icon-arrow-right"></i>推荐歌曲</h3>
@@ -26,18 +26,18 @@
       </smalltitle>
       <newsong></newsong>
     </div>
-    <div style="width: 35%;display: inline-block;margin-left: 15%;vertical-align: top" class="clearfix">
-      <smalltitle>
-        <template v-slot:head>
-          <h3><i class="el-icon-arrow-right"></i>推荐歌手</h3>
-        </template>
-        <template v-slot:tail>
-          <a href="#" style="color: black">更多</a>
-          <i class="el-icon-arrow-right"></i>
-        </template>
-      </smalltitle>
-      <singer></singer>
-    </div>
+  </div>
+  <div style="width: 90%;margin: 0 auto" class="clearfix">
+    <smalltitle>
+      <template v-slot:head>
+        <h3><i class="el-icon-arrow-right"></i>推荐歌手</h3>
+      </template>
+      <template v-slot:tail>
+        <a href="#" style="color: black">更多</a>
+        <i class="el-icon-arrow-right"></i>
+      </template>
+    </smalltitle>
+    <singer></singer>
   </div>
 
 </div>

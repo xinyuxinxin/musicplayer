@@ -21,15 +21,7 @@ export default {
   },
   computed: {
     getPlayCount () {
-      if (this.sheet.playCount > 100000000) {
-        return Math.floor(this.sheet.playCount / 100000000) + '亿'
-      } else if (this.sheet.playCount > 10000) {
-        return Math.floor(this.sheet.playCount / 10000) + '万'
-      } else if (this.sheet.playCount > 1000) {
-        return Math.floor(this.sheet.playCount / 1000) + '千'
-      } else {
-        return this.sheet.playCount
-      }
+      return this.$until.playCount(this.sheet.playCount)
     }
   },
   props: {
@@ -53,12 +45,13 @@ export default {
 .sheetitem-title{
   width: 130px;
   font-size: 8px;
-  height: 30px;
+  height: 40px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  margin-top: 10px;
+  padding: 5px 3px;
+  box-sizing: border-box;
   -webkit-box-orient: vertical;
   cursor: pointer;
 }

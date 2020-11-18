@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <singeritem class="singer-box" v-for="(item,index) in singers" :key="index" :singermessage="item"></singeritem>
+  <div class="singer-box">
+    <template v-for="(item,index) in singers">
+      <singeritem class="singer"  v-if="index < 22" :key="index" :singermessage="item"></singeritem>
+    </template>
   </div>
 </template>
 
@@ -35,11 +37,26 @@ export default {
 
 <style scoped>
 .singer-box{
-  float: left;
+  width: 100%;
+  height: 320px;
   margin-top: 10px;
-  margin-right: calc((100% - 300px)/2);
+  margin-bottom: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.singer-box:nth-child(3n){
-  margin-right: 0;
+
+.singer{
+  float: left;
+  margin-left: calc((100% - 120px * 11)/10);
+  margin-top: 5px;
+  /*margin-top: 10px;*/
+  /*margin-right: calc((100% - 300px)/2);*/
 }
+.singer-box .singer:nth-child(11n+1){
+  margin-left: 0;
+}
+/*.singer:nth-child(3n){*/
+/*  margin-right: 0;*/
+/*}*/
 </style>

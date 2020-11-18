@@ -1,7 +1,7 @@
 <template>
   <div class="newsong" @click="playMusic">
     <div class="songImg">
-      <el-image :src="song.picUrl"></el-image>
+      <el-image class="songImg-img" :src="song.picUrl"></el-image>
     </div>
     <div class="songMessage">
       <router-link :to="{name:'songDetail', query: {id:song.id}}" tag="h2">{{song.name}}</router-link>
@@ -9,6 +9,12 @@
     </div>
     <div class="songTime">
       {{getAllMin}}
+    </div>
+    <div class="playCount">
+      {{getPlayCount}}播放
+    </div>
+    <div class="option">
+      <i class="el-icon-more"></i>
     </div>
   </div>
 </template>
@@ -33,6 +39,9 @@ export default {
         s = '0' + s
       }
       return min + ':' + s
+    },
+    getPlayCount () {
+      return this.$until.playCount(this.song.song.bMusic.playTime)
     }
   },
   methods: {
@@ -45,13 +54,35 @@ export default {
 
 <style scoped>
 .songImg{
-  flex: 1.8;
+  flex: 1;
+  text-align: center;
 }
 .songMessage{
-  flex: 7.2;
+  flex: 4.2;
+  height: 60px;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 .songTime{
   flex: 1;
+  text-align: center;
+  font-size: 15px;
+}
+.playCount{
+  flex: 2;
+  text-align: center;
+  font-size: 12px;
+}
+.option{
+  flex: 1;
+  text-align: center;
+}
+.songImg-img{
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
 }
 .newsong{
   display: flex;
@@ -59,13 +90,10 @@ export default {
   align-items: center;
 }
 .songMessage h2{
-  font-size: 18px;
-  text-indent: 17px;
-  margin-bottom: 30px;
+  font-size: 15px;
 }
 .songMessage p{
-  text-indent: 1em;
+  font-size: 13px;
   color: gray;
-  margin-top: 20px;
 }
 </style>

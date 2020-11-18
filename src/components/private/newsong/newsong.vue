@@ -1,6 +1,8 @@
 <template>
   <div>
-    <newsongitem class="newsong" v-for="(item,index) in newsonglist" :song="item" :key="index"></newsongitem>
+    <div class="newsong-box clearfix">
+      <newsongitem class="newsong" v-for="item in newsonglist" :song="item" :key="item.id"></newsongitem>
+    </div>
   </div>
 </template>
 
@@ -35,10 +37,21 @@ export default {
 
 <style scoped>
 .newsong{
-  margin-top: 10px;
-}
-.newsong:hover{
+  min-width: 500px;
+  width: 45%;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px auto 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  transition: 1s;
+}
+.newsong-box{
+  width: 90%;
+  margin: 0 auto;
+}
+.newsong:nth-child(2n+1){
+  float: right;
+}
+.newsong:nth-child(2n) {
+  float: left;
 }
 </style>
