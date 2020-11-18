@@ -1,7 +1,8 @@
 <template>
 <div>
   <div  class="sheetitem-img">
-    <el-image :src="this.sheet.picUrl"></el-image>
+    <el-image v-if="this.sheet.picUrl" :src="this.sheet.picUrl"></el-image>
+    <el-image v-else :src="this.sheet.coverImgUrl"></el-image>
     <div class="play-count">
       {{getPlayCount}}
     </div>

@@ -12,33 +12,23 @@ export default {
   name: 'musicsheet',
   data () {
     return {
-      sheet: ''
     }
   },
   components: { sheetItem },
   computed: {
   },
   methods: {
-    async getsheet () {
-      try {
-        this.sheet = await this.$api.getPersonalized('16')
-        if (this.sheet.code === 200) {
-          this.sheet = this.sheet.result
-          console.log(this.sheet)
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
   },
   props: {
     limit: {
       type: Number,
       default: 12
+    },
+    sheet: {
+      type: Array
     }
   },
   created () {
-    this.getsheet()
   }
 }
 </script>
