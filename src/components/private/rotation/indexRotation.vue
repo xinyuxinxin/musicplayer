@@ -1,9 +1,8 @@
 <template>
 <div id="rotation">
-  <el-carousel arrow="hover" :interval="4000" type="card" indicator-position="none">
-    <el-carousel-item v-for="(item,index) in banner" :key="index">
-      <el-image :src="item.imageUrl" @click="toMusic">
-      </el-image>
+  <el-carousel  height="240px" arrow="hover" :interval="4000" type="card" >
+    <el-carousel-item  v-for="(item,index) in banner" :key="index">
+      <img class="banner-img" :src="item.imageUrl" @click="toMusic">
     </el-carousel-item>
   </el-carousel>
 </div>
@@ -53,8 +52,11 @@ img{
   position: center;
 }
 #rotation{
-  width: 90%;
   margin: auto;
+}
+.banner-img{
+  width: 100%;
+  height: auto;
 }
 .el-carousel__item:nth-child(2n) {
 }
