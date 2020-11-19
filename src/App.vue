@@ -7,4 +7,8 @@
 <style>
 @import 'assets/css/base.css';
 @import 'assets/font/iconfont.css';
+#app{
+  overflow: scroll;
+  min-width: 1800px;
+}
 </style>
