@@ -1,40 +1,39 @@
 <template>
 <div>
-  <rotation></rotation>
-  <div style="width: 90%;margin: 0 auto">
+  <div style="width: 1300px;margin: 0 auto">
+    <rotation></rotation>
+  </div>
+  <div style="width: 1300px;margin: 0 auto">
     <smalltitle>
       <template v-slot:head>
         <h3><i class="el-icon-arrow-right"></i>推荐歌单</h3>
       </template>
       <template v-slot:tail>
-        <a href="#" style="color: black">更多</a>
-        <i class="el-icon-arrow-right"></i>
+        <router-link tag="span" to="/playlist">更多<i class="el-icon-arrow-right"></i></router-link>
       </template>
     </smalltitle>
     <musicsheet :sheet="this.musicsheet"></musicsheet>
   </div>
-  <div style="width: 90%;margin: 0 auto;position: relative;vertical-align: top" class="clearfix">
+  <div style="width: 1300px;margin: 0 auto;position: relative;vertical-align: top" class="clearfix">
     <div class="clearfix">
       <smalltitle>
         <template v-slot:head>
           <h3><i class="el-icon-arrow-right"></i>推荐歌曲</h3>
         </template>
         <template v-slot:tail>
-          <a href="#" style="color: black">更多</a>
-          <i class="el-icon-arrow-right"></i>
+          <router-link tag="span" to="/playlist">更多<i class="el-icon-arrow-right"></i></router-link>
         </template>
       </smalltitle>
       <newsong></newsong>
     </div>
   </div>
-  <div style="width: 90%;margin: 0 auto" class="clearfix">
+  <div style="width: 1300px;margin: 0 auto" class="clearfix">
     <smalltitle>
       <template v-slot:head>
         <h3><i class="el-icon-arrow-right"></i>推荐歌手</h3>
       </template>
       <template v-slot:tail>
-        <a href="#" style="color: black">更多</a>
-        <i class="el-icon-arrow-right"></i>
+        <router-link tag="span" to="/playlist">更多<i class="el-icon-arrow-right"></i></router-link>
       </template>
     </smalltitle>
     <singer></singer>
@@ -79,5 +78,10 @@ export default {
 </script>
 
 <style scoped>
-
+span{
+  cursor: pointer;
+}
+span:hover{
+  color: gray;
+}
 </style>

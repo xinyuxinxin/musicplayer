@@ -16,7 +16,8 @@ const routes = [
       { path: 'songDetail', name: 'songDetail', component: () => import('../views/song/songDetail') },
       { path: 'sheetDetail', name: 'sheetDetail', component: () => import('../views/song/sheetDetail') },
       { path: 'rank', name: 'rank', component: () => import('../views/rank/rank') },
-      { path: 'cloud', name: 'cloud', component: () => import('../views/cloud/index') }
+      { path: 'cloud', name: 'cloud', component: () => import('../views/cloud/index') },
+      { path: 'playlist', name: 'playlist', component: () => import('../views/playlist/index') }
     ]
   }
 ]

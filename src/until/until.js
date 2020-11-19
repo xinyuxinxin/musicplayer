@@ -17,7 +17,7 @@ export const playCount = (playCount) => {
     return Math.floor(playCount / 100000000) + '亿'
   } else if (playCount > 10000) {
     return Math.floor(playCount / 10000) + '万'
-  } else if (this.sheet.playCount > 1000) {
+  } else if (playCount > 1000) {
     return Math.floor(playCount / 1000) + '千'
   } else {
     return playCount

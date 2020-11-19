@@ -1,7 +1,7 @@
 <template>
   <div class="singer-box">
     <template v-for="(item,index) in singers">
-      <singeritem class="singer"  v-if="index < 22" :key="index" :singermessage="item"></singeritem>
+      <singeritem class="singer"  v-if="index < 20" :key="index" :singermessage="item"></singeritem>
     </template>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default {
 
 .singer{
   float: left;
-  margin-left: calc((100% - 120px * 11)/10);
+  margin-left: calc((100% - 120px * 10)/9);
   margin-top: 5px;
   /*margin-top: 10px;*/
   /*margin-right: calc((100% - 300px)/2);*/

@@ -1,14 +1,14 @@
 <template>
 <div>
-  <div  class="sheetitem-img">
-    <el-image v-if="this.sheet.picUrl" :src="this.sheet.picUrl"></el-image>
-    <el-image v-else :src="this.sheet.coverImgUrl"></el-image>
+  <div  class="sheetitem-img" @click="toDetail">
+    <el-image v-if="sheet.picUrl" :src="sheet.picUrl"></el-image>
+    <el-image v-else :src="sheet.coverImgUrl"></el-image>
     <div class="play-count">
       {{getPlayCount}}
     </div>
   </div>
   <div>
-    <router-link :to="{name:'sheetDetail', query:{id:sheet.id}}" class="sheetitem-title" tag="h3">{{this.sheet.name}}</router-link>
+    <router-link :to="{name:'sheetDetail', query:{id: sheet.id}}" class="sheetitem-title" tag="h3">{{sheet.name}}</router-link>
   </div>
 </div>
 </template>
@@ -22,7 +22,8 @@ export default {
   },
   computed: {
     getPlayCount () {
-      return this.$until.playCount(this.sheet.playCount)
+      const count = this.sheet.playCount
+      return this.$until.playCount(count)
     }
   },
   props: {
@@ -33,6 +34,9 @@ export default {
   created () {
   },
   methods: {
+    toDetail () {
+      this.$router.push({ name: 'sheetDetail', query: { id: this.sheet.id } })
+    }
   }
 }
 </script>
@@ -42,6 +46,7 @@ export default {
   width: 130px;
   height: 130px;
   position: relative;
+  cursor: pointer;
 }
 .sheetitem-title{
   width: 130px;

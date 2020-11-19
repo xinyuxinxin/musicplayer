@@ -249,6 +249,7 @@ export default {
 
 <style scoped>
 .controll-box{
+  min-width: 1300px;
   display: flex;
   position: relative;
   height: 80px;
