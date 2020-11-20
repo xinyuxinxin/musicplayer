@@ -2,10 +2,10 @@
   <div class="singer-box">
     <div v-if="singers.length">
       <template v-for="(item,index) in singers">
-        <singeritem class="singer"  v-if="index < 20" :key="index" :singermessage="item"></singeritem>
+        <singeritem class="singer"  :key="index" :singermessage="item"></singeritem>
       </template>
     </div>
-    <div>
+    <div v-else>
       没数据
     </div>
   </div>
@@ -48,7 +48,7 @@ export default {
 <style scoped>
 .singer-box{
   width: 100%;
-  height: 350px;
+  height: auto;
   margin-bottom: 40px;
   padding: 10px;
   box-sizing: border-box;
@@ -57,12 +57,13 @@ export default {
 
 .singer{
   float: left;
+  overflow: hidden;
   margin-left: calc((100% - 120px * 10)/9);
   margin-bottom: 30px;
   /*margin-right: calc((100% - 300px)/2);*/
 }
-.singer-box .singer:nth-child(11n+1){
-  margin-left: 0;
+.singer-box .singer:nth-child(10n+1){
+  margin-left: -10px;
 }
 /*.singer:nth-child(3n){*/
 /*  margin-right: 0;*/
