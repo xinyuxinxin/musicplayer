@@ -1,8 +1,13 @@
 <template>
   <div class="singer-box">
-    <template v-for="(item,index) in singers">
-      <singeritem class="singer"  v-if="index < 20" :key="index" :singermessage="item"></singeritem>
-    </template>
+    <div v-if="singers.length">
+      <template v-for="(item,index) in singers">
+        <singeritem class="singer"  v-if="index < 20" :key="index" :singermessage="item"></singeritem>
+      </template>
+    </div>
+    <div>
+      没数据
+    </div>
   </div>
 </template>
 
@@ -13,24 +18,29 @@ export default {
   components: { singeritem },
   data () {
     return {
-      singers: ''
+      // singers: ''
     }
   },
   created () {
-    this.getHotSinger()
+    // this.getHotSinger()
+  },
+  props: {
+    singers: {
+      type: Array
+    }
   },
   methods: {
-    async getHotSinger () {
-      try {
-        this.singers = await this.$api.getHotSinger()
-        if (this.singers.code === 200) {
-          this.singers = this.singers.artists
-          console.log(this.singers)
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
+    // async getHotSinger () {
+    //   try {
+    //     this.singers = await this.$api.getHotSinger()
+    //     if (this.singers.code === 200) {
+    //       this.singers = this.singers.artists
+    //       console.log(this.singers)
+    //     }
+    //   } catch (e) {
+    //     console.log(e)
+    //   }
+    // }
   }
 }
 </script>
@@ -38,8 +48,7 @@ export default {
 <style scoped>
 .singer-box{
   width: 100%;
-  height: 320px;
-  margin-top: 10px;
+  height: 350px;
   margin-bottom: 40px;
   padding: 10px;
   box-sizing: border-box;
@@ -49,8 +58,7 @@ export default {
 .singer{
   float: left;
   margin-left: calc((100% - 120px * 10)/9);
-  margin-top: 5px;
-  /*margin-top: 10px;*/
+  margin-bottom: 30px;
   /*margin-right: calc((100% - 300px)/2);*/
 }
 .singer-box .singer:nth-child(11n+1){
