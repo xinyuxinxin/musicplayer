@@ -17,7 +17,8 @@ const routes = [
       { path: 'sheetDetail', name: 'sheetDetail', component: () => import('../views/song/sheetDetail') },
       { path: 'rank', name: 'rank', component: () => import('../views/rank/rank') },
       { path: 'cloud', name: 'cloud', component: () => import('../views/cloud/index') },
-      { path: 'playlist', name: 'playlist', component: () => import('../views/playlist/index') }
+      { path: 'playlist', name: 'playlist', component: () => import('../views/playlist/index') },
+      { path: 'artist', name: 'artist', component: () => import('../views/artist/index') }
     ]
   }
 ]

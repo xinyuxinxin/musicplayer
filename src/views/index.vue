@@ -33,10 +33,10 @@
         <h3><i class="el-icon-arrow-right"></i>推荐歌手</h3>
       </template>
       <template v-slot:tail>
-        <router-link tag="span" to="/playlist">更多<i class="el-icon-arrow-right"></i></router-link>
+        <router-link tag="span" to="/artist">更多<i class="el-icon-arrow-right"></i></router-link>
       </template>
     </smalltitle>
-    <singer></singer>
+    <singer :singers="singers"></singer>
   </div>
 
 </div>
@@ -53,11 +53,13 @@ export default {
   data () {
     return {
       searchKey: '',
-      musicsheet: []
+      musicsheet: [],
+      singers: []
     }
   },
   created () {
     this.getsheet()
+    this.getHotSinger()
   },
   methods: {
     async getsheet () {
@@ -67,6 +69,17 @@ export default {
           this.musicsheet = this.musicsheet.result
           console.log(123)
           console.log(this.musicsheet)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async getHotSinger () {
+      try {
+        const res = await this.$api.getHotSinger()
+        if (res.code === 200) {
+          this.singers = res.artists
+          console.log(this.singers)
         }
       } catch (e) {
         console.log(e)
