@@ -56,7 +56,7 @@ export default {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  padding: 5px 3px;
+  padding: 5px 5px;
   box-sizing: border-box;
   -webkit-box-orient: vertical;
   cursor: pointer;

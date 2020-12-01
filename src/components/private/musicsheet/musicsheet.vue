@@ -39,7 +39,7 @@ export default {
   margin-top: 10px;
   margin-bottom: 20px;
   margin-right: calc((100% - 1040px)/7);
-  box-shadow: 2px 1px 2px black;
+  box-shadow:  lightgray 0px 0px 2px 2px;
   position: relative;
   /*flex: 1;*/
 }
@@ -47,7 +47,7 @@ export default {
   margin-right: 0;
 }
 .sheetitem:hover{
-  box-shadow: 3px 2px 3px black;
+  box-shadow: lightgray 0px 0px 3px 3px;
   transform: translateY(-5px);
   transition: 1s;
 }
