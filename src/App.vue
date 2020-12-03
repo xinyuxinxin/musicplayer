@@ -6,7 +6,7 @@
 
 <style>
 @import 'assets/css/base.css';
-@import 'assets/font/iconfont.css';
+@import 'assets/css/iconfont.css';
 #app{
   min-width: 1200px;
 }

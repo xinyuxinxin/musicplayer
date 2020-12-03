@@ -8,9 +8,9 @@
       <p>{{artiname}}</p>
     </div>
     <div class="controll-base">
-      <i class="iconfont icon-Asong"></i>
-      <i class="iconfont" @click="play" :class="{'icon-zantingtingzhi':!playIcon,'icon-bofang':playIcon}"></i>
-      <i class="iconfont icon-Nextsong"></i>
+      <i class="iconfont iconpresong"></i>
+      <i class="iconfont" @click="play" :class="{'iconzantingtingzhi':playIcon,'iconbofang':!playIcon}"></i>
+      <i class="iconfont iconnextsong"></i>
     </div>
     <div class="current-time">{{getCurTime}}</div>
     <div class="music-progress">
@@ -21,16 +21,16 @@
     <div class="all-time">{{getAllTime}}</div>
     <div class="music-volum">
       <div class="volum-icon">
-        <i class="iconfont icon-yinliang"></i>
+        <i class="iconfont iconvolume"></i>
       </div>
       <div class="volum-progerss">
         <el-slider  @change="saveVolume" @input="changeVolum" v-model='curvolum' :show-tooltip="false"></el-slider>
       </div>
     </div>
     <div class="controll-other">
-      <i class="iconfont icon-shunxu"></i>
-      <i class="iconfont icon-geci24" @click="showLyric"></i>
-      <i class="iconfont icon-gedan" @click="showUserSongList"></i>
+      <i class="iconfont iconshunxu1"></i>
+      <i class="iconfont iconlrc2" @click="showLyric"></i>
+      <i class="iconfont icongedan" @click="showUserSongList"></i>
     </div>
     <transition name="slide-fade">
       <div class="user-song-list-box" v-if="isShowUserSongList">

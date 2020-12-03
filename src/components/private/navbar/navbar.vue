@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="logo">
-      <router-link tag="h1" to="/"><i class="iconfont icon-wangyiyunyinle"></i>网易云音乐</router-link>
+      <router-link tag="h1" to="/"><i class="iconfont iconyinle1"></i>STARMUSIC</router-link>
     </div>
     <el-menu :default-active="activeIndex" active-text-color="#ffffff" background-color="#242424" text-color="#d2d2d2"
              class="nav" mode="horizontal" @select="handleSelect">
@@ -92,9 +92,9 @@ export default {
 }
 
 h1 i {
-  color: red;
-  font-size: 30px;
+  font-size: 25px;
   margin-right: 12px;
+  color: yellow;
 }
 
 .logo {
@@ -102,7 +102,11 @@ h1 i {
   color: white;
   text-align: center;
 }
-
+.logo h1 {
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
+}
 .nav {
   flex: 5;
   display: inline-block;

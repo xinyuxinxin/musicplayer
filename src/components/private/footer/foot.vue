@@ -1,8 +1,8 @@
 <template>
   <footer class="foot-box" >
     <ul>
-      <li><i class="iconfont icon-wangyiyunyinle"> </i>ColudMusic</li>
-      <li>coludmusic</li>
+      <li><i class="iconfont iconyinle1"> </i>StarMusic</li>
+      <li>StarMusic</li>
     </ul>
   </footer>
 </template>
@@ -46,7 +46,7 @@ li:nth-child(2){
   color: gray;
 }
 i{
-  color: red;
+  color: yellow;
   margin-left: 5px;
   margin-right: 5px;
 }
