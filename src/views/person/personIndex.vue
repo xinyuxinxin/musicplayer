@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div style="overflow: hidden">
     <div class="person-background">
+      <div class="person-headImg">
+        <el-image style="border-radius: 50%" :src="personMessage.profile.avatarUrl"></el-image>
+      </div>
     </div>
     <div class="person-headImg-box">
-      <div class="person-headImg">
-        <el-image :src="personMessage.profile.avatarUrl"></el-image>
-      </div>
       <div class="person-message clearfix">
         <ul>
           <li>用户名称：{{personMessage.profile.nickname}}</li>
@@ -114,12 +114,13 @@ export default {
 <style scoped>
 .person-background{
   width: 100%;
-  height: 250px;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
   background-attachment: fixed;
-  background-image: url("https://tse4-mm.cn.bing.net/th/id/OIP.TsOeWo-37D_iza8VpDwHGgHaEc?w=304&h=182&c=7&o=5&pid=1.7");
+  background-color: black;
+  position: relative;
 }
 .person-headImg-box{
   height: 260px;
@@ -130,9 +131,11 @@ export default {
 .person-headImg{
   width: 150px;
   height: 150px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 99;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-100%);
+  z-index: 9;
 }
 .el-image{
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
@@ -143,7 +146,7 @@ export default {
   height: 180px;
   margin: -75px auto 0;
   background-color: white;
-  z-index: 98;
+  z-index: 8;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 75px 0px 0;
   box-sizing: border-box;

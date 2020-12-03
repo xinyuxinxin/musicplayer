@@ -5,7 +5,7 @@
     </div>
     <router-view/>
     <foot></foot>
-    <div style="position: fixed;bottom: 0;width: 100%;background-color: white">
+    <div style="position: fixed;bottom: 0;width: 100%;background-color: white;z-index: 999">
       <music-controll></music-controll>
     </div>
     <login></login>
