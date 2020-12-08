@@ -1,7 +1,7 @@
 <template>
   <div class="singer">
     <div class="headImg">
-      <el-avatar :size="120" shape="square" :src="singermessage.picUrl"></el-avatar>
+      <el-image class="headImg-pic" :src="singermessage.picUrl"></el-image>
     </div>
     <div class="singername">{{ singermessage.name }}</div>
   </div>
@@ -27,10 +27,14 @@ export default {
 }
 
 .singername {
+  width: 120px;
   text-align: center;
   height: 20px;
   font-size: 14px;
   line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .singer {
@@ -38,5 +42,9 @@ export default {
 
 .singer:hover {
   cursor: pointer;
+}
+.headImg-pic{
+  width: 120px;
+  height: 120px;
 }
 </style>

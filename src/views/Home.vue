@@ -3,8 +3,12 @@
     <div :class="{'changeFixed': isFixed}">
       <navbar></navbar>
     </div>
-    <router-view/>
-    <foot></foot>
+    <div class="content-box">
+      <router-view/>
+    </div>
+    <div class="foot-box">
+      <foot></foot>
+    </div>
     <div style="position: fixed;bottom: 0;width: 100%;background-color: white;z-index: 999">
       <music-controll></music-controll>
     </div>
@@ -61,6 +65,17 @@ export default {
 }
 </script>
 <style scoped>
+.home{
+  height: 120vh;
+}
+.foot-box{
+  height: 20vh;
+  width: 100%;
+}
+.content-box{
+  height: auto;
+  min-height: 100vh;
+}
 .changeFixed {
   position: fixed;
   width: 100%;

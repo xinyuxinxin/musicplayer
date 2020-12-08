@@ -1,20 +1,24 @@
 <template>
 <div class="clearfix">
-  <div id="sheets">
+  <div v-if="sheet.length !== 0" id="sheets">
     <sheet-item class="sheetitem" v-for="(item,index) in sheet" :sheet="item" :key="index"></sheet-item >
+  </div>
+  <div v-else>
+    <loading></loading>
   </div>
 </div>
 </template>
 
 <script>
 import sheetItem from '@/components/private/musicsheet/sheetItem'
+import loading from '@/components/common/loading/loading'
 export default {
   name: 'musicsheet',
   data () {
     return {
     }
   },
-  components: { sheetItem },
+  components: { loading, sheetItem },
   computed: {
   },
   methods: {

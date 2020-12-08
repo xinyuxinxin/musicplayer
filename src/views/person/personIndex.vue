@@ -84,6 +84,7 @@ export default {
         console.log(e)
       }
     },
+    // 获取地区编码
     async getAdress () {
       try {
         await axios.get('/data/cityCode/city.json').then(res => {

@@ -2,8 +2,8 @@
   <div style="margin: 0 auto;width: 90%;min-width:1300px;padding: 20px">
     <div class="sort-box clearfix">
       <div class="sort-left">
-        <el-button type="primary" size="mini" class="el-icon-arrow-up" v-if="!isHidden" @click="showCat"></el-button>
-        <el-button type="primary" size="mini" class="el-icon-arrow-down" v-else @click="showCat"></el-button>
+        <el-button style="background-color: yellow;border-color: yellow;color: black" type="primary" size="mini" class="el-icon-arrow-up" v-if="!isHidden" @click="showCat"></el-button>
+        <el-button style="background-color: yellow;border-color: yellow;color: black" type="primary" size="mini" class="el-icon-arrow-down" v-else @click="showCat"></el-button>
         <div class="sort-cat clearfix" v-if="isHidden">
           <ul class="clearfix" v-for="(item, index) in categories" :key="index">
             <div class="sort-cat-left">{{item}}：</div>
@@ -18,7 +18,7 @@
       <div class="sort-right">
         <ul>
           <li>热门标签：</li>
-          <li @click="toTag(item.name)" v-for="item in hotTag" :key="item.id">{{item.name}}</li>
+          <li @click="toTag(item.name)" :class="{'activeTag': item.name === tag}" v-for="item in hotTag" :key="item.id">{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -146,7 +146,7 @@ export default {
   background-color: white;
   box-shadow: 0 2px 2px lightgray,2px 0 2px lightgray,0 -2px 2px lightgray,-2px 0 2px lightgray;
   padding: 10px;
-  z-index: 999;
+  z-index: 99;
   margin-top: 12px;
 }
 .sort-cat:before,
@@ -156,7 +156,7 @@ export default {
   border: transparent solid 12px;
   position: absolute;
   top: -22px;
-  left: 15px;
+  left: 10px;
   z-index: 1000;
   border-bottom-color: white;
 }
@@ -186,10 +186,24 @@ export default {
   padding: 3px 3px;
   cursor: pointer;
 }
+.sort-cat-right li:hover{
+  background-color: #ffff99;
+}
 .playlist-pagination{
   margin: 10px auto;
   width: 80%;
   text-align: center;
+}
+.sort-right ul li {
+  padding: 0 6px;
+  border-radius: 3px;
+}
+.activeTag{
+  background-color: #ffff99;
+}
+.playlist-pagination >>> .el-pagination.is-background .el-pager li:not(.disabled).active{
+  background-color: yellow;
+  color: black;
 }
 
 </style>

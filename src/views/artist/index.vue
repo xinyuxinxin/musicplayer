@@ -5,21 +5,23 @@
         <template v-for="items in item">
           <li @click="selectCat(items.id)" v-if="index === 'types'" :class="{'activecat': items.id === cat}" :key="items.id">{{items.name}}</li>
           <li @click="selectArea(items.id)" v-else-if="index === 'areas'"  :class="{'activecat': items.id === area}" :key="items.id">{{items.name}}</li>
-          <li  @click="selectInitials(items.id)" v-else-if="index === 'initials'"  :class="{'activecat': items.id === initial}" :key="items.id">{{items.name}}</li>
+          <li @click="selectInitials(items.id)" v-else-if="index === 'initials'"  :class="{'activecat': items.id === initial}" :key="items.id">{{items.name}}</li>
         </template>
       </ul>
     </div>
     <ul class="artist-list-box">
       <singer :singers="singers"></singer>
+      <loading class="loading-box" v-if="loadingData" height="100px"></loading>
     </ul>
   </div>
 </template>
 
 <script>
 import Singer from '@/components/private/recommend/singer'
+import loading from '@/components/common/loading/loading'
 export default {
   name: 'index',
-  components: { Singer },
+  components: { loading, Singer },
   data () {
     return {
       cats: {
@@ -183,7 +185,8 @@ export default {
       cat: -1,
       initial: '-1',
       offset: 0,
-      singers: []
+      singers: [],
+      loadingData: false
     }
   },
   methods: {
@@ -199,6 +202,16 @@ export default {
         const res = await this.$api.getSingerList(params)
         if (res.code === 200) {
           console.log(res)
+          const imgArray = res.artists.map((item) => {
+            return item.picUrl
+          })
+          this.loadingData = !await this.$until.preloadImg(imgArray).then(() => {
+            if (this.limit === 40 && imgArray.length === 20) {
+              res.artists = []
+            }
+          })
+          this.loadingData = false
+          console.log(this.loadingData + '2')
           this.singers = this.singers.concat(res.artists)
         }
       } catch (e) {
@@ -213,27 +226,30 @@ export default {
       // 变量scrollHeight是滚动条的总高度
       const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
       // 滚动条到底部的条件
-      if (scrollTop + windowHeight === scrollHeight) {
-        this.offset++
-        this.getArtist()
+      if (this.loadingData === false) {
+        if (scrollTop + windowHeight === scrollHeight) {
+          this.limit = 20
+          this.offset++
+          this.loadingData = true
+          this.getArtist()
+        }
       }
     },
     selectCat (value) {
       this.cat = value
-      console.log(value)
-      this.singers = []
-      this.offset = 0
-      this.getArtist()
+      this.init()
     },
     selectArea (value) {
       this.area = value
-      console.log(value)
-      this.singers = []
-      this.offset = 0
-      this.getArtist()
+      this.init()
     },
     selectInitials (value) {
       this.initial = value
+      this.init()
+    },
+    init () {
+      this.loadingData = false
+      this.limit = 40
       this.singers = []
       this.offset = 0
       this.getArtist()
@@ -254,11 +270,14 @@ export default {
   margin: 8px;
   text-align: center;
   font-size: 14px;
-  padding: 3px;
+  padding: 5px;
+  border-radius: 4px;
 }
 .activecat {
-  background-color: red;
-  color: white;
+  background-color: #ffff99;
+  color: black;
 }
-
+.loading-box{
+  margin-top: -30px;
+}
 </style>

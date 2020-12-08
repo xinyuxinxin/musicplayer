@@ -6,8 +6,8 @@
        <i class="el-icon-close" @click="closeLogin"></i>
        <div class="title-box">
          <div style="display: table-cell;vertical-align: middle;">
-           <i class="iconfont icon-wangyiyunyinle"></i>
-           <h1>CLOUDMUSIC</h1>
+           <i class="iconfont iconyinle1"></i>
+           <h1>STARMUSIC</h1>
          </div>
        </div>
       <div class="username-box">
@@ -96,7 +96,7 @@ export default {
 .title-box i {
   display: inline-block;
   width: 90%;
-  color: red;
+  color: yellow;
   font-size:50px;
 }
 .username-box,.userpwd-box, .sub-box{

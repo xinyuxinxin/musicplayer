@@ -24,7 +24,7 @@
         <i class="iconfont iconvolume"></i>
       </div>
       <div class="volum-progerss">
-        <el-slider  @change="saveVolume" @input="changeVolum" v-model='curvolum' :show-tooltip="false"></el-slider>
+        <el-slider  @input="changeVolum" v-model='curvolum' :show-tooltip="false"></el-slider>
       </div>
     </div>
     <div class="controll-other">
@@ -207,10 +207,6 @@ export default {
     changeVolum (key) {
       this.curvolum = key
       document.getElementById('music').volume = key / 100
-      console.log(key)
-    },
-    saveVolume (volume) {
-      this.$store.commit('setPlayVolume', volume)
     },
     musicPlaying () {
       this.timer = setInterval(() => {

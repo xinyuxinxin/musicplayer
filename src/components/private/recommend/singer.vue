@@ -6,16 +6,17 @@
       </template>
     </div>
     <div v-else>
-      没数据
+      <loading></loading>
     </div>
   </div>
 </template>
 
 <script>
 import singeritem from '@/components/private/recommend/singeritem'
+import Loading from '@/components/common/loading/loading'
 export default {
   name: 'singer',
-  components: { singeritem },
+  components: { Loading, singeritem },
   data () {
     return {
       // singers: ''
@@ -30,17 +31,6 @@ export default {
     }
   },
   methods: {
-    // async getHotSinger () {
-    //   try {
-    //     this.singers = await this.$api.getHotSinger()
-    //     if (this.singers.code === 200) {
-    //       this.singers = this.singers.artists
-    //       console.log(this.singers)
-    //     }
-    //   } catch (e) {
-    //     console.log(e)
-    //   }
-    // }
   }
 }
 </script>
@@ -49,7 +39,6 @@ export default {
 .singer-box{
   width: 100%;
   height: auto;
-  margin-bottom: 40px;
   padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
@@ -60,12 +49,8 @@ export default {
   overflow: hidden;
   margin-left: calc((100% - 120px * 10)/9);
   margin-bottom: 30px;
-  /*margin-right: calc((100% - 300px)/2);*/
 }
 .singer-box .singer:nth-child(10n+1){
-  margin-left: -10px;
+  margin-left: 0px;
 }
-/*.singer:nth-child(3n){*/
-/*  margin-right: 0;*/
-/*}*/
 </style>

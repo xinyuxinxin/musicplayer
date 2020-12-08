@@ -23,3 +23,32 @@ export const playCount = (playCount) => {
     return playCount
   }
 }
+
+/*
+图片预加载
+@array 预加载图片数组
+ */
+function loadingImg (imgsrc) {
+  const p = new Promise(function (resolve, reject) {
+    const img = new Image()
+    img.onload = function () { // 加载时执行resolve函数
+      resolve(img)
+    }
+    img.onerror = function () {
+      reject(imgsrc)
+    }
+    img.src = imgsrc
+  })
+  return p
+}
+
+export const preloadImg = async (array) => {
+  // eslint-disable-next-line no-unused-vars
+  let count = 0
+  for (const imgsrc of array) {
+    await loadingImg(imgsrc).then(() => {
+      count++
+    })
+  }
+  return true
+}

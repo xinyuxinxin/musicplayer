@@ -3,13 +3,13 @@
     <div class="logo">
       <router-link tag="h1" to="/"><i class="iconfont iconyinle1"></i>STARMUSIC</router-link>
     </div>
-    <el-menu :default-active="activeIndex" active-text-color="#ffffff" background-color="#242424" text-color="#d2d2d2"
+    <el-menu :default-active="$route.path" router active-text-color="#ffffff" background-color="#242424" text-color="#d2d2d2"
              class="nav" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1"><router-link to="/" tag="p">发现音乐</router-link></el-menu-item>
-      <el-menu-item index="2"><router-link to="/rank" tag="p">排行榜</router-link></el-menu-item>
-      <el-menu-item index="3"><router-link to="/playlist" tag="p">歌单</router-link></el-menu-item>
-      <el-menu-item index="4"><router-link to="/artist" tag="p">歌手</router-link></el-menu-item>
-      <el-menu-item index="5"><router-link to="/" tag="p">MV</router-link></el-menu-item>
+      <el-menu-item index="/"><p>发现音乐</p></el-menu-item>
+      <el-menu-item index="/rank"><p>排行榜</p></el-menu-item>
+      <el-menu-item index="/playlist"><p>歌单</p></el-menu-item>
+      <el-menu-item index="/artist"><p>歌手</p></el-menu-item>
+      <el-menu-item index="/MV"><p>MV</p></el-menu-item>
     </el-menu>
     <div class="searchbox">
       <el-input
@@ -73,6 +73,8 @@ export default {
         console.log(e)
       }
     }
+  },
+  mounted () {
   }
 }
 </script>

@@ -1,16 +1,20 @@
 <template>
   <div>
-    <div class="newsong-box clearfix">
+    <div v-if="newsonglist !== ''" class="newsong-box clearfix">
       <newsongitem class="newsong" v-for="item in newsonglist" :song="item" :key="item.id"></newsongitem>
+    </div>
+    <div v-else>
+      <loading></loading>
     </div>
   </div>
 </template>
 
 <script>
 import Newsongitem from '@/components/private/newsong/newsongitem'
+import loading from '@/components/common/loading/loading'
 export default {
   name: 'newsong',
-  components: { Newsongitem },
+  components: { loading, Newsongitem },
   data () {
     return {
       newsonglist: ''
@@ -36,6 +40,22 @@ export default {
 </script>
 
 <style scoped>
+@keyframes moveLeft {
+  0% {
+    transform: translateX(-150px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes moveRight {
+  0% {
+    transform: translateX(150px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
 .newsong{
   min-width: 500px;
   width: 45%;
@@ -50,8 +70,10 @@ export default {
 }
 .newsong:nth-child(2n+1){
   float: right;
+  animation: moveRight 0.5s linear 1;
 }
 .newsong:nth-child(2n) {
   float: left;
+  animation: moveLeft 0.5s linear 1;
 }
 </style>
