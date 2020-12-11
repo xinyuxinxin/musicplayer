@@ -34,9 +34,8 @@
     </div>
     <transition name="slide-fade">
       <div class="user-song-list-box" v-if="isShowUserSongList">
-        <ul>
-          <li>我是歌单</li>
-        </ul>
+        <label>最近播放</label>
+        <small-song-list :song-list="songList"></small-song-list>
       </div>
     </transition>
     <transition name="slide-fade">
@@ -56,8 +55,10 @@
 </template>
 
 <script>
+import SmallSongList from '@/components/private/musicItem/smallSongList'
 export default {
   name: 'musicControll',
+  components: { SmallSongList },
   data () {
     return {
       musicDetail: '',
@@ -72,7 +73,8 @@ export default {
       playIcon: false,
       isShowUserSongList: false,
       isShowLyric: false,
-      curLyric: 0
+      curLyric: 0,
+      songList: []
     }
   },
   watch: {
@@ -239,6 +241,7 @@ export default {
     this.getMusicUrl()
     this.getMusicDetail()
     this.getMusicLyric()
+    this.songList = this.$storage.get('songlist')
   }
 }
 </script>
@@ -330,6 +333,7 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   bottom: 80px;
   padding: 15px;
+  overflow: hidden;
 }
 .song-lyric{
   width: 350px;

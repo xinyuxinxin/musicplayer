@@ -1,34 +1,41 @@
 <template>
   <div style="overflow: hidden">
-    <div class="person-background">
+    <div id="person_bc" class="person-background">
+      <canvas class="star-background" id="canv" ></canvas>
       <div class="person-headImg">
         <el-image style="border-radius: 50%" :src="personMessage.profile.avatarUrl"></el-image>
       </div>
-    </div>
-    <div class="person-headImg-box">
-      <div class="person-message clearfix">
-        <ul>
-          <li>用户名称：{{personMessage.profile.nickname}}</li>
-          <li>用户ID: {{personMessage.profile.userId}}</li>
-          <li>会员等级：LV.{{personMessage.level}}</li>
-          <li>用户经历： {{personMessage.createDays}}天</li>
-          <li>听过歌曲： {{personMessage.listenSongs}}</li>
-          <li>用户城市： {{getUserAddress}}</li>
-        </ul>
+      <div class="user-level">
+        LV.{{personMessage.level}}
+      </div>
+      <div class="user-listened">
+        {{personMessage.listenSongs}}首
+      </div>
+      <div class="user-city">
+        {{getUserAddress}}
+      </div>
+      <div class="user-age">
+        {{personMessage.createDays}}天
+      </div>
+      <div class="other-mes">
+        <div class="nickname">{{personMessage.profile.nickname}}</div>
+        <div class="nickname clearfix">
+          <li style="float: left">关注: {{personMessage.profile.follows}}</li>
+          <li style="float: right">粉丝: {{personMessage.profile.followeds}}</li>
+        </div>
       </div>
     </div>
     <div class="person-songs-box">
       <el-row :gutter="20">
-        <el-col :span="4"><div class="other"></div></el-col>
-        <el-col :span="16">
-          <div class="history-songs">播放历史</div>
+        <el-col :span="14">
+          <div class="history-songs">最近播放</div>
           <ul v-if="historySongs !== '' ">
             <musicitem></musicitem>
             <musicitem v-for="(item, index) in historySongs" :key="index" :al="item.song.al" :dt="item.song.dt" :ar="item.song.ar" :song="item.song"></musicitem>
           </ul>
           <div v-else>暂时没有记录</div>
         </el-col>
-        <el-col :span="4"><div class="user-song-sheets"></div></el-col>
+        <el-col :span="6"><div class="user-song-sheets"></div></el-col>
       </el-row>
     </div>
   </div>
@@ -37,6 +44,7 @@
 <script>
 import axios from 'axios'
 import Musicitem from '@/components/private/musicItem/musicitem'
+import { start } from '@/assets/js/star'
 export default {
   name: 'personIndex',
   components: { Musicitem },
@@ -57,7 +65,6 @@ export default {
           break
         }
       }
-      console.log(province)
       return province
     }
   },
@@ -66,11 +73,13 @@ export default {
       this.getPersonMessage()
     } else {
       this.personMessage = this.$storage.get('userDetail')
+      console.log(this.personMessage)
     }
     this.getAdress()
     this.getPersonHistory()
   },
   mounted () {
+    start('canv', 'person_bc')
   },
   methods: {
     async getPersonMessage () {
@@ -113,9 +122,20 @@ export default {
 </script>
 
 <style scoped>
+@keyframes beat {
+  0% {
+    transform: translateY(-50px);
+  }
+  70% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 .person-background{
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -123,66 +143,21 @@ export default {
   background-color: black;
   position: relative;
 }
-.person-headImg-box{
-  height: 260px;
-  width: 100%;
-  background-color: transparent;
-  margin-top: -75px;
-}
 .person-headImg{
   width: 150px;
   height: 150px;
   position: absolute;
   top: 50%;
   left: 50%;
+  border-radius: 50%;
+  box-shadow: white 0 0 3px 3px;
   transform: translate(-50%,-100%);
-  z-index: 9;
-}
-.el-image{
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
-}
-.person-message{
-  position: relative;
-  width: 400px;
-  height: 180px;
-  margin: -75px auto 0;
-  background-color: white;
-  z-index: 8;
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
-  padding: 75px 0px 0;
-  box-sizing: border-box;
-}
-.person-message ul li{
-  height: 30px;
-  line-height: 30px;
-  float: left;
-  margin-left: 15px;
-  background-color: #5dd5c8;
-  padding: 0 0 0 10px;
-  margin-top: 2px;
-}
-.person-message ul li:nth-child(2n + 1){
-  float: right;
-  text-align: right;
-  padding: 0 10px 0 0;
-}
-.person-message ul li:nth-child(2n + 1):before{
-  content: '';
-  display: block;
-  border: 15px solid transparent;
-  float: left;
-  border-left-color: white;
-}
-.person-message ul li:nth-child(2n):after{
-  content: '';
-  display: block;
-  border: 15px solid transparent;
-  float: right;
-  border-right-color: white;
+  z-index: 12;
 }
 .person-songs-box{
   width: 100%;
   height: auto;
+  margin: 0 auto;
 }
 
 .other,
@@ -212,5 +187,71 @@ export default {
   display: block;
   position: absolute;
   left: 14px;
+}
+.user-level,
+.user-city,
+.user-listened,
+.user-age
+{
+  text-align: center;
+  position: absolute;
+  border-radius: 50%;
+  font-size: 24px;
+  animation: beat 1s linear 1;
+  z-index: 12;
+  color: white;
+}
+.user-level{
+  width: 170px;
+  height: 170px;
+  line-height: 170px;
+  left: 20%;
+  top: 15%;
+  background: radial-gradient(circle at 60px 60px, skyblue 10%, #000);
+}
+.user-listened{
+  height: 200px;
+  line-height: 200px;
+  width: 200px;
+  top: 10%;
+  right: 15%;
+  background: radial-gradient(circle at 70px 70px, darkturquoise 10%, #000);
+}
+.user-city{
+  height: 150px;
+  line-height: 150px;
+  width: 150px;
+  bottom: 17%;
+  right: 20%;
+  background: radial-gradient(circle at 50px 50px, lime 10%, #000);
+}
+.user-age{
+  height: 130px;
+  line-height: 130px;
+  width: 130px;
+  bottom: 25%;
+  left: 20%;
+  background: radial-gradient(circle at 40px 40px, #5dd5c8 10%, #000);
+}
+.other-mes{
+  width: 150px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top:   10px;
+  margin-left: -75px;
+}
+.star-background{
+  position: absolute;
+  z-index: 10;
+  width: 100vw;
+  height: 90vh;
+}
+.nickname {
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+  color: yellow;
 }
 </style>

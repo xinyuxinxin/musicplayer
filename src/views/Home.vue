@@ -36,7 +36,7 @@ export default {
   },
   watch: {
   },
-  created () {
+  async created () {
     if (this.$storage.get('userdata') === null) {
       this.$message.error('用户登录失效')
       this.$store.commit('setIsNeedLogin', true)
@@ -45,6 +45,20 @@ export default {
       const userdata = this.$storage.get('userdata')
       this.$store.commit('setIsLogin', true)
       this.$store.commit('setUserMessage', userdata)
+    }
+    if (this.$storage.get('songList') === null) {
+      const musiclist = await this.getPersonHistory()
+      if (musiclist === null) {
+      } else {
+        var songlist = musiclist.map((item) => {
+          return {
+            id: item.song.id,
+            name: item.song.name,
+            time: item.song.dt
+          }
+        })
+        this.$storage.set('songlist', songlist)
+      }
     }
   },
   mounted () {
@@ -59,7 +73,17 @@ export default {
         this.isFixed = false
       }
     },
-    initCityCode () {
+    async getPersonHistory () {
+      try {
+        var res = await this.$api.getUserRecord(this.$store.state.userId, 0)
+        if (res.code === 200) {
+          console.log(res)
+          return res.allData
+        }
+      } catch (e) {
+        console.log(e)
+      }
+      return null
     }
   }
 }
